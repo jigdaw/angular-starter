@@ -21,14 +21,14 @@ describe(`App`, () => {
    */
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppComponent ],
+      declarations: [AppComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [AppState]
     })
-    /**
-     * Compile template and css
-     */
-    .compileComponents();
+      /**
+       * Compile template and css
+       */
+      .compileComponents();
   }));
 
   /**
@@ -36,7 +36,7 @@ describe(`App`, () => {
    */
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
-    comp    = fixture.componentInstance;
+    comp = fixture.componentInstance;
 
     /**
      * Trigger initial data binding
@@ -61,6 +61,38 @@ describe(`App`, () => {
 
     comp.ngOnInit();
     expect(console.log).toHaveBeenCalled();
+  });
+
+  it('1 + 1 + 3 + 5 + 4', () => {
+    expect(comp.main('1 + 1 + 3 + 5 + 4')).toEqual(14);
+  });
+
+  it('1 * 2 * 3 * 4 * 5', () => {
+    expect(comp.main('1 * 2 * 3 * 4 * 5')).toEqual(120);
+  });
+
+  it('1 + 2 * 3 - 1 / 20', () => {
+    expect(comp.main('1 + 2 * 3 - 1 / 20')).toEqual(6.95);
+  });
+
+  it('1 / 20 / 30 * 50 + 10', () => {
+    expect(comp.main('1 / 20 / 30 * 50 + 10')).toEqual(10.0833333333);
+  });
+
+  it('1 + (29 + 45) * 100', () => {
+    expect(comp.main('1 + ( 29 + 45 ) * 100')).toEqual(7401);
+  });
+
+  it('1 + 50 / 20 * (1 + 1)', () => {
+    expect(comp.main('1 + 50 / 20 * ( 1 + 1 )')).toEqual(6);
+  });
+
+  it('90 / 10 * (20 + 0) - 1', () => {
+    expect(comp.main('90 / 10 * ( 20 + 0 ) - 1')).toEqual(179);
+  });
+
+  it('( ( 1 + 2 * 5 ) - 100 )', () => {
+    expect(comp.main('( ( 1 + 2 * 5 ) - 100 )')).toEqual(-89);
   });
 
 });
